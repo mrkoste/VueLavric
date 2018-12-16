@@ -1,0 +1,34 @@
+<% var data = {
+title: "Main page | Project",
+author: "MrKoste"
+}; %>
+<%= _.template(require('./../includes/header.html'))(data) %>
+
+<div class="wrapper">
+        <div class="sample" >
+            <input type="text" v-on:input="name = $event.target.value" :placeholder="name" >
+            <hr>
+            <h2 v-if="showName">Hello, {{ name }} </h2>
+            <div v-else>Name id hidden</div>
+            <h2 v-show="showName">Hello, {{ name }} </h2>
+
+
+            <button class="btn btn-success" @click="showName = !showName">ToggleName</button>
+            <button class="btn btn-primary" @click="showName = !showName" @click="toggleName">ToggleName2</button>
+        </div>
+</div>
+<script>
+   let sample =  new Vue({
+        el: '.sample',
+        data: {
+            name: '',
+            showName: true
+        },
+       methods: {
+           toggleName(){
+                this.showName = !this.showName;
+           }
+       }
+    });
+</script>
+<%= _.template(require('./../includes/footer.html'))(data) %>

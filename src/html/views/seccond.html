@@ -1,0 +1,36 @@
+<% var data = {
+title: "Main page | Project",
+author: "MrKoste"
+}; %>
+<%= _.template(require('./../includes/header.html'))(data) %>
+
+<div class="wrapper">
+    <div class="sample" >
+        <input type="text" v-model="firstName" >
+        <input type="text" v-model="lastName" >
+        <hr>
+        <h2>Hello, {{ fullName() }} </h2>
+        <button class="btn btn-success" @click="showText = !showText">ToggleName</button>
+        <hr>
+        <div v-show="showText">Some Text</div>
+
+    </div>
+</div>
+<script>
+    let sample =  new Vue({
+        el: '.sample',
+        data: {
+            firstName: '',
+            lastName: '',
+            showText: false
+        },
+        methods: {
+            fullName(){
+                console.log('render Full Name');
+                return `${this.firstName} ${this.lastName}`
+            }
+        },
+
+    });
+</script>
+<%= _.template(require('./../includes/footer.html'))(data) %>
